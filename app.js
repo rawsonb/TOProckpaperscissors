@@ -12,7 +12,6 @@ function getComputerChoice() {
 }
 
 function playRound() {
-    console.log("welcome to rock paper scissors!");
     playerChoice = prompt("rock, paper, or scissors?").toLowerCase();
     console.log(`your choice: ${playerChoice}`)
     computerChoice = getComputerChoice()
@@ -37,6 +36,7 @@ function playRound() {
 }
 
 function game(){
+    console.log("welcome to rock paper scissors!");
     let score = 0;
     let round;
     for (let i = 0; i < 5; i++){
@@ -62,4 +62,4 @@ function randInt(min, max) {
     return Math.floor(Math.random() * (max-min) + min);
 }
 
-console.log(playRound());
+game();
