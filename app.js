@@ -49,9 +49,9 @@ function game(){
         }
     }
     if (score > 0){
-        console.log("FINAL WINNER: PLAYER")
+        console.log("YOU ARE THE FINAL WINNER")
     } else if(score < 0){
-        console.log("FINAL WINNER: COMPUTER")
+        console.log("YOU ARE A GIANT LOSER")
     } else {
         console.log("GAME TIED")
     }
