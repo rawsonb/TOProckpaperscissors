@@ -11,11 +11,8 @@ function getComputerChoice() {
     }
 }
 
-function playRound() {
-    playerChoice = prompt("rock, paper, or scissors?").toLowerCase();
-    console.log(`your choice: ${playerChoice}`)
+function playRound(playerChoice) {
     computerChoice = getComputerChoice()
-    console.log(`computer's choice: ${computerChoice}`);
     if( playerChoice == computerChoice){
         return "tie";
     }
@@ -35,31 +32,67 @@ function playRound() {
     }
 }
 
-function game(){
-    console.log("welcome to rock paper scissors!");
-    let score = 0;
-    let round;
-    for (let i = 0; i < 5; i++){
-        round = playRound()
-        console.log(round);
-        if(round == "win"){
-            score++
-        } else if(round == "lose"){
-            score--
-        }
-    }
-    if (score > 0){
-        console.log("YOU ARE THE FINAL WINNER")
-    } else if(score < 0){
-        console.log("YOU ARE A GIANT LOSER")
-    } else {
-        console.log("GAME TIED")
-    }
-}
-
 // min inclusive, max non-inclusive
 function randInt(min, max) { 
     return Math.floor(Math.random() * (max-min) + min);
 }
 
-game();
+function adjustScore(result){
+    docItems.popSound.play();
+    if(result == "win"){
+        scoreBoard.playerScore++;
+        docItems.player.textContent = scoreBoard.playerScore;
+        if(scoreBoard.playerScore >= 5){
+            scoreBoard.playerScore = 0;
+            docItems.player.textContent = scoreBoard.playerScore;
+            scoreBoard.computerScore = 0;
+            docItems.computer.textContent = scoreBoard.computerScore;
+            docItems.info.textContent = "YOU WON THE GAME!";
+        } else {
+            docItems.info.textContent = "win";
+        }
+    } else if(result == "tie"){
+        scoreBoard.computerScore++;
+        docItems.computer.textContent = scoreBoard.computerScore;
+        if(scoreBoard.computerScore >= 5){
+            scoreBoard.playerScore = 0;
+            docItems.player.textContent = scoreBoard.playerScore;
+            scoreBoard.computerScore = 0;
+            docItems.computer.textContent = scoreBoard.computerScore;
+            docItems.info.textContent = "YOU LOST THE GAME!";
+        } else {
+            docItems.info.textContent = "lose";
+        }
+    } else{
+        docItems.info.textContent = "tie";
+    }
+}
+
+const docItems = {
+    info: document.querySelector(".info"),
+    player: document.querySelector(".score .player"),
+    computer: document.querySelector(".score .computer"),
+    rockButton: document.querySelector(".rock-button"),
+    scissorsButton: document.querySelector(".scissors-button"),
+    paperButton: document.querySelector(".paper-button"),
+    popSound: document.getElementById("pop"),
+}
+
+let scoreBoard = {
+    playerScore: 0,
+    computerScore: 0,
+}
+
+docItems.rockButton.addEventListener('click', () => {
+    adjustScore(playRound("rock"));
+});
+
+docItems.paperButton.addEventListener('click', () => {
+    adjustScore(playRound("paper"));
+});
+
+docItems.scissorsButton.addEventListener('click', () => {
+    adjustScore(playRound("scissors"));
+});
+
+docItems.info.textContent = "Click a button to start.";

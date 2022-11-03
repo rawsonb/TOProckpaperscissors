@@ -1,0 +1,32 @@
+* {
+    font-family: monospace;
+}
+
+.buttons {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: lightgray;
+    height: 100px;
+    border: solid black 1px;
+}
+
+button {
+    background-color: white;
+    border: solid black 1px;
+    border-radius: 5px;
+}
+
+.info {
+    text-align: center;
+    margin-bottom: 10px;
+    background-color:lightgrey;
+    border: solid black 1px;
+}
+
+.score {
+    display: flex;
+    justify-content: space-evenly;
+    font-size: 30px;
+    border: solid black 1px;
+}
